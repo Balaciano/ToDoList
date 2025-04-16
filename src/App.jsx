@@ -7,30 +7,53 @@ import Info from "./components/Info/Info";
 import { FileText } from "phosphor-react";
 
 import styles from "./app.module.css";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 
 
 function App() {
   const [tasks, setTasks] = useState([]);
-
   const [isEmpty, setIsEmpty] = useState(true);
+  const [newTask, setNewTask] = useState("");
 
-  function handleNewTask(){
+  //Utilizado para reagir a mudanças de estado
+  useEffect(() => {
+    //Se o taanho da tasks for vazia, isEmpty é true
+    setIsEmpty(tasks.length === 0);
+  }, [tasks]);
+
+  function handleCreateNewTask(event){
     event.preventDefault();
-    setTasks([...tasks, {
-      id: 4,
-      message: "Olá,eu estou passando essa nova info",
-      isComplete: true
-    },]);
-    setIsEmpty(false);
+
+    const newTaskObject = { 
+      id: Date.now(), // garante um ID único
+      message: newTask,
+      isComplete: false
+    };
+
+    //!!!!!!!  IMPORTANTE !!!!!!!
+    //CASO A MENSAGEM SEJA VAZIA (TENTAR FAZER UMA VALIDAÇÃO NESSE INPUT COM O ZOD AO INVES DISSO)
+    if (newTask.trim() === "") return;
+    //
+
+    setTasks([...tasks, newTaskObject]);
+    setNewTask("");
   }
+
+  
+  function handleNewTaskInput(event){
+    setNewTask(event.target.value);
+  }
+
+  
 
   return (
     <>
       <Header />
       <DoBar 
-        onClick={handleNewTask}
+        onClick={handleCreateNewTask}
+        functionReturn={handleNewTaskInput}
+        value={newTask}
       />
       <div className={styles.tasksoptions}>
         <div className={styles.content}>
