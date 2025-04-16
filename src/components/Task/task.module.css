@@ -1,0 +1,42 @@
+.container {
+    width: 46rem;
+    min-height: 4.5rem;
+    background-color: var(--gray-500);
+    border-radius: 8px;
+    padding: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.container > div {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+}
+
+
+.doingTask {
+    font-size: .875rem;
+    color: var(--gray-100);
+    font-weight: regular;
+    max-width: 90%;
+}
+
+.doneTask {
+    font-size: .875rem;
+    color: var(--gray-100);
+    font-weight: regular;
+    opacity: 0.6;
+    max-width: 90%;
+    text-decoration: line-through;
+}
+
+.trash {
+    color: var(--gray-300);
+    cursor: pointer;
+}
+
+.trash:hover {
+    color: var(--red);
+}
