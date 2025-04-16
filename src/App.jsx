@@ -33,14 +33,17 @@ function App() {
         onClick={handleNewTask}
       />
       <div className={styles.tasksoptions}>
+        <div className={styles.content}>
         <Info />
         <div className={styles.alltasks}>
           {isEmpty ?
           (
-            <div className={styles.withouTask}>
+            <div className={styles.withoutTask}>
               <FileText size={56} color="var(--gray-400)"/>
-              <h1>Você ainda não tem tarefas cadastradas</h1>
-              <h2>Crie tarefas e organize seus itens a fazer</h2>
+              <div>
+                <h1>Você ainda não tem tarefas cadastradas</h1>
+                <h2>Crie tarefas e organize seus itens a fazer</h2>
+              </div>
             </div>
           )
           : (
@@ -54,6 +57,7 @@ function App() {
             ))}
             </>
           )}
+        </div>
         </div>
       </div>
     </>
