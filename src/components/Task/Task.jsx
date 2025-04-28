@@ -4,7 +4,10 @@ import  {Circle, Trash, CheckCircle} from "phosphor-react";
 
 
 export default function Task(props){
-
+    function handleChangeDone(){
+        props.onToggleComplete(props.id);
+    }
+    
 
     return (
         <>
@@ -13,13 +16,13 @@ export default function Task(props){
                 {props.isComplete 
                 ? (
                     <>
-                        <CheckCircle size={24} color="var(--blue)" /> 
+                        <CheckCircle size={24} color="var(--blue)" onClick={handleChangeDone}/> 
                         <p className={styles.doneTask}>{props.message}</p>
                     </>
                 )  :
                 (
                     <>
-                        <Circle size={24} color="var(--blue)" /> 
+                        <Circle size={24} color="var(--blue)" onClick={handleChangeDone}/> 
                         <p className={styles.doingTask}>{props.message}</p>
                     </>
                 )}

@@ -13,12 +13,12 @@ import { useEffect, useState } from "react";
 
 function App() {
   const [tasks, setTasks] = useState([]);
-  const [isEmpty, setIsEmpty] = useState(true);
+  const [isEmpty, setIsEmpty] = useState();
   const [newTask, setNewTask] = useState("");
 
   //Utilizado para reagir a mudanças de estado
   useEffect(() => {
-    //Se o taanho da tasks for vazia, isEmpty é true
+    //Se o tamanho da tasks for vazia, isEmpty é true
     setIsEmpty(tasks.length === 0);
   }, [tasks]);
 
@@ -45,7 +45,16 @@ function App() {
     setNewTask(event.target.value);
   }
 
-  
+  function toggleTaskComplete(taskId) {
+    const updatedTasks = tasks.map(task => {
+      if (taskId === task.id) {
+        return {...task, isComplete: !task.isComplete};
+      }
+      return task;
+    })
+    setTasks(updatedTasks);
+  }
+
 
   return (
     <>
@@ -74,8 +83,10 @@ function App() {
               {tasks.map(task => (
               <Task 
                 key={task.id}
+                id={task.id}
                 isComplete={task.isComplete}
                 message={task.message}
+                onToggleComplete={toggleTaskComplete}
               />
             ))}
             </>
