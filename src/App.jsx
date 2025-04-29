@@ -76,7 +76,9 @@ function App() {
       />
       <div className={styles.tasksoptions}>
         <div className={styles.content}>
-        <Info />
+        <Info 
+          tasks={tasks} 
+        />
         <div className={styles.alltasks}>
           {isEmpty ?
           (

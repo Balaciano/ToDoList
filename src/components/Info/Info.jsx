@@ -1,6 +1,6 @@
 import styles from "./info.module.css";
 
-export default function Info(){
+export default function Info(props){
     return (
         <>
         <section className={styles.container}>
@@ -8,13 +8,13 @@ export default function Info(){
             <div>
                 <p className={styles.taskcreated}>Tarefas Criadas</p>
                 <div>
-                    <span>5</span>
+                    <span>{props.tasks.length}</span>
                 </div>
             </div>
             <div>
                 <p className={styles.taskdone}>Concluidas</p>
                 <div>
-                    <span>2 de 5</span>
+                    <span>{props.tasks.filter(task => task.isComplete).length} de {props.tasks.length}</span>
                 </div>
             </div>
             </div>
