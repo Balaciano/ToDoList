@@ -55,6 +55,16 @@ function App() {
     setTasks(updatedTasks);
   }
 
+  function toggleDeleteTask(taskId) {
+    const updatesTasks = tasks.filter(task => {
+      if (taskId === task.id) {
+        return false;
+      }
+      return task;
+    })
+    setTasks(updatesTasks);
+  }
+
 
   return (
     <>
@@ -87,6 +97,7 @@ function App() {
                 isComplete={task.isComplete}
                 message={task.message}
                 onToggleComplete={toggleTaskComplete}
+                onToggleDeleteTask={toggleDeleteTask}
               />
             ))}
             </>

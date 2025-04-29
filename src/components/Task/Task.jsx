@@ -7,7 +7,10 @@ export default function Task(props){
     function handleChangeDone(){
         props.onToggleComplete(props.id);
     }
-    
+
+    function handleDeleteTask(){
+        props.onToggleDeleteTask(props.id);
+    }
 
     return (
         <>
@@ -27,7 +30,7 @@ export default function Task(props){
                     </>
                 )}
             </div>
-            <Trash size={24} className={styles.trash}/>
+            <Trash size={24} className={styles.trash} onClick={handleDeleteTask} />
         </section>
         </>
     )
